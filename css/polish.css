@@ -1,0 +1,1181 @@
+/*  =========================================================================
+    Deabam Flexo Printing — Modern Total UI Redesign & Theme System (2026)
+    State-of-the-art aesthetics, glassmorphism, gradient typography, rich card
+    elevations, modern micro-interactions, and multi-device perfection.
+    ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================================
+   1. GLOBAL DESIGN TOKENS & RESET OVERRIDES
+   ========================================================================= */
+
+:root {
+  --font-heading: 'Outfit', 'Playfair Display', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  --color-primary: #0a192f;
+  --color-primary-light: #162a45;
+  --color-secondary: #00b4d8;
+  --color-accent: #e5a93b;
+  --color-accent-hover: #f5b842;
+  --color-accent-dark: #c5861b;
+  
+  --color-text-dark: #0f172a;
+  --color-text-body: #475569;
+  --color-text-muted: #64748b;
+  --color-bg-light: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  
+  --shadow-sm: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 10px 20px -8px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 12px 30px rgba(229, 169, 59, 0.3);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
+  
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+  font-family: var(--font-body) !important;
+  color: var(--color-text-body) !important;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.sec-title,
+.tp-title,
+.footer-title {
+  font-family: var(--font-heading) !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-dark));
+  border-radius: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* =========================================================================
+   2. HEADER & NAVIGATION REDESIGN
+   ========================================================================= */
+
+.main-header {
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  background: #ffffff;
+}
+
+/* --- Header Top bar --- */
+.header-top {
+  background: linear-gradient(90deg, #071324 0%, #0d2340 100%) !important;
+  padding: 12px 60px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.header-top .left-content {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-top .left-content .content-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 30px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.header-top .left-content li {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.header-top .left-content li a {
+  font-family: var(--font-body) !important;
+  font-size: 13.5px !important;
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.header-top .left-content li a:hover {
+  color: var(--color-accent) !important;
+}
+
+.header-top .left-content li i {
+  color: var(--color-accent) !important;
+  font-size: 15px;
+  margin: 0 !important;
+}
+
+.header-top .right-content {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-top .right-content .social-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.header-top .right-content .social-box li a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0 !important;
+  font-size: 14px !important;
+  margin: 0 !important;
+  transition: var(--transition-bounce) !important;
+}
+
+.header-top .right-content .social-box li a:hover {
+  background: var(--color-accent) !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-3px) scale(1.1) !important;
+  box-shadow: var(--shadow-glow);
+}
+
+/* --- Header Bottom bar --- */
+.header-bottom {
+  padding: 15px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.main-header .logo-box {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.main-header .logo-box img {
+  height: 55px !important;
+  width: auto !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.05));
+  transition: var(--transition-normal);
+}
+
+.main-header .logo-box:hover img {
+  transform: scale(1.03);
+}
+
+.main-header .menu-area {
+  padding: 0 !important;
+  float: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  margin-left: auto !important;
+}
+
+.main-menu {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.main-menu .navigation {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.main-menu .navigation > li {
+  margin: 0 !important;
+  display: inline-flex !important;
+}
+
+.main-menu .navigation > li > a {
+  font-family: var(--font-body) !important;
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  color: var(--color-primary) !important;
+  padding: 15px 0 !important;
+  letter-spacing: 0.2px;
+  transition: var(--transition-fast) !important;
+  position: relative !important;
+  white-space: nowrap !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.main-menu .navigation > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+  border-radius: 4px;
+  transition: var(--transition-normal);
+  transform: translateX(-50%);
+  box-shadow: var(--shadow-glow);
+}
+
+.main-menu .navigation > li > a:hover,
+.main-menu .navigation > li.current > a {
+  color: var(--color-accent-dark) !important;
+}
+
+.main-menu .navigation > li > a:hover::after,
+.main-menu .navigation > li.current > a::after {
+  width: 80%;
+}
+
+.main-header .menu-area .link {
+  position: static !important;
+  margin-left: 0 !important;
+}
+
+.main-header .menu-area .link:before {
+  display: none !important;
+}
+
+/* --- Sticky Header --- */
+.sticky-header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1) !important;
+  padding: 10px 0 !important;
+}
+
+.sticky-header .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 20px !important;
+}
+
+.sticky-header .logo-box {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.sticky-header .logo-box img {
+  height: 48px !important;
+  width: auto !important;
+}
+
+.sticky-header .menu-area {
+  display: flex !important;
+  align-items: center !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  gap: 15px !important;
+}
+
+.sticky-header .main-menu .navigation > li > a {
+  padding: 15px 0 !important;
+}
+
+.sticky-header .main-menu .navigation > li > a:hover,
+.sticky-header .main-menu .navigation > li.current > a {
+  background: transparent !important;
+  color: var(--color-accent-dark) !important;
+}
+
+
+/* =========================================================================
+   3. BUTTON AESTHETICS (SHIMMER, GLOW, 3D ELEVATION)
+   ========================================================================= */
+
+.theme-btn,
+.theme-btn-two,
+.theme-btn-three {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px;
+  border-radius: var(--radius-pill) !important;
+  padding: 13px 36px !important;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal) !important;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  white-space: nowrap !important;
+}
+
+.theme-btn {
+  background: linear-gradient(135deg, #e5a93b 0%, #c5861b 100%) !important;
+  color: var(--color-primary) !important;
+  border: none !important;
+}
+
+.theme-btn::before,
+.theme-btn-two::before,
+.theme-btn-three::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.6s ease;
+  z-index: 2;
+}
+
+.theme-btn:hover::before,
+.theme-btn-two:hover::before,
+.theme-btn-three:hover::before {
+  left: 100%;
+}
+
+.theme-btn:hover {
+  background: linear-gradient(135deg, #0a192f 0%, #162a45 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 14px 30px rgba(10, 25, 47, 0.35) !important;
+}
+
+.theme-btn-two {
+  background: transparent !important;
+  border: 2px solid var(--color-accent) !important;
+  color: var(--color-accent-dark) !important;
+}
+
+.theme-btn-two:hover {
+  background: linear-gradient(135deg, #e5a93b 0%, #c5861b 100%) !important;
+  border-color: transparent !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+.theme-btn-three {
+  background: #ffffff !important;
+  border: 1.5px solid var(--color-border) !important;
+  color: var(--color-primary) !important;
+  padding: 10px 28px !important;
+}
+
+.theme-btn-three:hover {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+.theme-btn:active,
+.theme-btn-two:active,
+.theme-btn-three:active {
+  transform: translateY(-1px) scale(0.98) !important;
+}
+
+
+/* =========================================================================
+   4. HERO VIDEO SLIDER REDESIGN
+   ========================================================================= */
+
+.main-slider {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 -20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.slide-overlay {
+  background: linear-gradient(180deg, rgba(8, 19, 37, 0.65) 0%, rgba(8, 19, 37, 0.5) 50%, rgba(8, 19, 37, 0.8) 100%) !important;
+}
+
+
+/* =========================================================================
+   5. SECTION TYPOGRAPHY & SPACING
+   ========================================================================= */
+
+.sec-pad {
+  padding: 85px 0 95px 0 !important;
+}
+
+.sec-pad-2 {
+  padding: 95px 0 !important;
+}
+
+.gray-bg {
+  background: var(--color-bg-light) !important;
+}
+
+.sec-title {
+  font-size: 38px !important;
+  line-height: 48px !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  padding-bottom: 16px !important;
+  letter-spacing: -0.5px;
+}
+
+.sec-title::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+  margin: 14px auto 0 auto;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.sec-title:hover::after {
+  width: 110px;
+}
+
+.sec-title.left::after {
+  margin: 14px 0 0 0;
+}
+
+.title-text {
+  font-size: 16px !important;
+  color: var(--color-text-muted) !important;
+  margin-bottom: 55px !important;
+  padding-bottom: 0 !important;
+}
+
+.title-text:before {
+  display: none !important;
+}
+
+
+/* =========================================================================
+   6. WELCOME & ABOUT SECTION REDESIGN
+   ========================================================================= */
+
+.spa-section {
+  padding: 85px 0 95px 0 !important;
+  background: #ffffff;
+}
+
+.spa-section .content-style-one .text p {
+  font-size: 16px !important;
+  line-height: 29px !important;
+  color: var(--color-text-body) !important;
+  margin-bottom: 18px !important;
+}
+
+.spa-section .img-box {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-normal);
+}
+
+.spa-section .img-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 45px rgba(15, 23, 42, 0.15);
+}
+
+.spa-section .img-box img {
+  border-radius: var(--radius-md) !important;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  object-fit: cover;
+  width: 100%;
+}
+
+.spa-section .img-box:hover img {
+  transform: scale(1.06);
+}
+
+
+/* =========================================================================
+   7. HI-TECH PRINTERS & ROOM CARDS REDESIGN
+   ========================================================================= */
+
+.room-section .single-item {
+  border-radius: var(--radius-md) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal) !important;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.room-section .single-item:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(229, 169, 59, 0.5) !important;
+}
+
+.room-section .single-item .image-box {
+  overflow: hidden;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+}
+
+.room-section .single-item .image-box img {
+  transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease !important;
+}
+
+.room-section .single-item:hover .image-box img {
+  transform: scale(1.1) !important;
+  filter: brightness(1.04);
+}
+
+.room-section .single-item .lower-content {
+  padding: 30px 24px 34px 24px !important;
+  border: none !important;
+}
+
+.room-section .single-item .lower-content h3 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: var(--color-primary) !important;
+  margin-bottom: 14px !important;
+}
+
+.room-section .single-item .lower-content h3 a {
+  color: var(--color-primary) !important;
+  transition: var(--transition-fast);
+}
+
+.room-section .single-item:hover .lower-content h3 a {
+  color: var(--color-accent-dark) !important;
+}
+
+.room-section .single-item .lower-content .text {
+  font-size: 15px !important;
+  line-height: 26px !important;
+  color: var(--color-text-body) !important;
+  margin-bottom: 22px !important;
+}
+
+
+/* =========================================================================
+   8. SERVICE TABS REDESIGN (SEGMENTED CONTROL STYLE)
+   ========================================================================= */
+
+.service-section .tab-title {
+  margin-bottom: 50px !important;
+}
+
+.service-section .tab-title li {
+  padding: 0 8px;
+}
+
+.service-section .tab-title li .single-btn {
+  border-radius: var(--radius-md) !important;
+  background: #ffffff !important;
+  border: 1.5px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm);
+  padding: 30px 15px 22px 15px !important;
+  width: 100% !important;
+  height: 140px !important;
+  transition: var(--transition-normal) !important;
+}
+
+.service-section .tab-title li .single-btn:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.service-section .tab-title li .single-btn .icon-box img {
+  height: 38px;
+  width: auto;
+  transition: transform 0.4s ease;
+}
+
+.service-section .tab-title li:hover .single-btn .icon-box img {
+  transform: scale(1.18) rotate(5deg);
+}
+
+.service-section .tab-title li.active .single-btn {
+  background: linear-gradient(135deg, #0a192f 0%, #162a45 100%) !important;
+  border-color: #0a192f !important;
+  box-shadow: 0 14px 35px rgba(10, 25, 47, 0.3) !important;
+}
+
+.service-section .tab-title li.active .single-btn:before {
+  background: #0a192f !important;
+}
+
+.service-section .tab-title li.active .single-btn .icon-box img {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.service-section .tab-title .single-btn .text {
+  font-family: var(--font-heading) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px;
+}
+
+.service-section .tab-title li.active .single-btn .text {
+  color: #ffffff !important;
+}
+
+.service-section .tab-details-content .img-box img {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.service-section .tab-details-content .content .title {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+}
+
+
+/* =========================================================================
+   9. GALLERY SECTION REDESIGN
+   ========================================================================= */
+
+.gallery-section {
+  padding: 90px 0 100px 0 !important;
+}
+
+.overlay-style-one .inner-box {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.overlay-style-one .image-box img {
+  transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.overlay-style-one .inner-box:hover .image-box img {
+  transform: scale(1.12) !important;
+}
+
+.overlay-style-one .overlay-box:before {
+  background-color: rgba(10, 25, 47, 0.85) !important;
+  backdrop-filter: blur(4px);
+}
+
+.overlay-style-one .inner-box .overlay-inner .content a {
+  width: 46px !important;
+  height: 46px !important;
+  line-height: 46px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  color: var(--color-primary) !important;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-bounce) !important;
+}
+
+.overlay-style-one .inner-box .overlay-inner .content a:hover {
+  background: var(--color-accent) !important;
+  color: var(--color-primary) !important;
+  transform: scale(1.2) !important;
+  box-shadow: var(--shadow-glow);
+}
+
+
+/* =========================================================================
+   10. TESTIMONIAL CARDS REDESIGN
+   ========================================================================= */
+
+.testimonial-section {
+  padding-bottom: 85px !important;
+}
+
+.testimonial-section .testimonial-content {
+  border-radius: var(--radius-md) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 45px 25px 35px 25px !important;
+  transition: var(--transition-normal) !important;
+  position: relative;
+}
+
+.testimonial-section .testimonial-content:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--color-accent) !important;
+}
+
+.testimonial-section .testimonial-content .thumb-box {
+  border-radius: 50% !important;
+  box-shadow: var(--shadow-md);
+  border: 3px solid #ffffff !important;
+  transition: transform 0.4s ease;
+}
+
+.testimonial-section .testimonial-content:hover .thumb-box {
+  transform: scale(1.1);
+  border-color: var(--color-accent) !important;
+}
+
+.testimonial-section .testimonial-content .author {
+  font-family: var(--font-heading) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--color-primary) !important;
+}
+
+
+/* =========================================================================
+   11. FACT COUNTER REDESIGN
+   ========================================================================= */
+
+.fact-counter {
+  padding: 90px 0 !important;
+  background: var(--color-bg-light) !important;
+}
+
+.fact-counter .single-item {
+  border-radius: var(--radius-md) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm);
+  padding: 48px 20px 52px 20px !important;
+  transition: var(--transition-normal) !important;
+}
+
+.fact-counter .single-item:hover {
+  background: linear-gradient(135deg, #0a192f 0%, #162a45 100%) !important;
+  border-color: #0a192f !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 40px rgba(10, 25, 47, 0.3) !important;
+}
+
+.fact-counter .single-item .icon-box img {
+  height: 48px;
+  width: auto;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fact-counter .single-item:hover .icon-box img {
+  transform: scale(1.25);
+  filter: brightness(0) invert(1);
+}
+
+.fact-counter .single-item .count-outer span {
+  font-family: var(--font-heading) !important;
+  font-size: 46px !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  transition: color 0.4s ease;
+}
+
+.fact-counter .single-item:hover .count-outer span,
+.fact-counter .single-item:hover .text {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================================
+   12. PAGE BANNER TITLE (ABOUT, SERVICES, PORTFOLIO, CONTACT, HOSPITAL)
+   ========================================================================= */
+
+.page-title {
+  padding: 100px 0 85px 0 !important;
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.page-title:before {
+  background: linear-gradient(135deg, rgba(8, 19, 37, 0.85) 0%, rgba(13, 35, 64, 0.9) 100%) !important;
+}
+
+.page-title .content-box .title {
+  font-size: 48px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.page-title .content-box .bread-crumb li {
+  font-size: 15px !important;
+  font-weight: 500;
+}
+
+
+/* =========================================================================
+   13. CONTACT CARDS & FORM REDESIGN
+   ========================================================================= */
+
+.contact-info {
+  padding: 75px 0 55px 0 !important;
+}
+
+.contact-info .single-item {
+  border-radius: var(--radius-md) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm);
+  padding: 30px 20px 30px 80px !important;
+  transition: var(--transition-normal) !important;
+  position: relative !important;
+  min-height: 120px;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info .single-item .icon-box {
+  left: 25px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.contact-info .single-item:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-color: var(--color-accent) !important;
+}
+
+.contact-info .single-item .icon-box img {
+  height: 42px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.contact-info .single-item:hover .icon-box img {
+  transform: scale(1.18);
+}
+
+.contact-section .form-group input,
+.contact-section .form-group textarea {
+  border-radius: var(--radius-sm) !important;
+  border: 1.5px solid var(--color-border) !important;
+  padding: 15px 22px !important;
+  font-size: 15px !important;
+  color: var(--color-text-dark) !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.contact-section .form-group input:focus,
+.contact-section .form-group textarea:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 4px rgba(229, 169, 59, 0.18) !important;
+  outline: none;
+}
+
+
+/* =========================================================================
+   14. PORTFOLIO & WASTAGE BAG PAGE REDESIGN
+   ========================================================================= */
+
+.place-details {
+  padding: 75px 0 60px 0 !important;
+}
+
+.place-details .similar-place {
+  margin-bottom: 50px !important;
+}
+
+.place-details .similar-place .sec-title.left {
+  margin-bottom: 25px !important;
+}
+
+.place-details .single-place-content .image {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.place-details .single-place-content .image figure img {
+  border-radius: var(--radius-md) !important;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.place-details .single-place-content .image:hover figure img {
+  transform: scale(1.08) !important;
+}
+
+
+/* =========================================================================
+   15. FOOTER & FOOTER BOTTOM REDESIGN
+   ========================================================================= */
+
+.main-footer {
+  background: linear-gradient(180deg, #071324 0%, #040a14 100%) !important;
+  padding: 85px 0 60px 0 !important;
+}
+
+.main-footer .footer-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--color-accent) !important;
+  margin-bottom: 24px !important;
+}
+
+.main-footer .logo-widget p {
+  color: #94a3b8 !important;
+  font-size: 15px;
+  line-height: 27px;
+}
+
+.main-footer .service-widget li a {
+  color: #cbd5e1 !important;
+  font-size: 15px !important;
+  transition: var(--transition-fast) !important;
+}
+
+.main-footer .service-widget li a:hover {
+  transform: translateX(6px) !important;
+  color: var(--color-accent) !important;
+}
+
+.main-footer .contact-widget .mail,
+.main-footer .contact-widget .phone {
+  color: #cbd5e1 !important;
+  font-size: 14px;
+}
+
+.main-footer .contact-widget .mail i,
+.main-footer .contact-widget .phone i {
+  color: var(--color-accent) !important;
+}
+
+.main-footer .newsletter-widget .text {
+  color: #94a3b8 !important;
+}
+
+.main-footer .newsletter-widget .form-group input[type='email'] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 30px 0 0 30px !important;
+  padding-left: 24px !important;
+}
+
+.main-footer .newsletter-widget .form-group input[type='email']:focus {
+  border-color: var(--color-accent) !important;
+}
+
+.main-footer .newsletter-widget .form-group button {
+  background: linear-gradient(135deg, #e5a93b 0%, #c5861b 100%) !important;
+  color: var(--color-primary) !important;
+  border-radius: 0 30px 30px 0 !important;
+  font-weight: 700 !important;
+  transition: var(--transition-fast) !important;
+}
+
+.main-footer .newsletter-widget .form-group button:hover {
+  background: #ffffff !important;
+  color: var(--color-primary) !important;
+}
+
+.footer-bottom {
+  background: #02060d !important;
+  padding: 22px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom .copyright {
+  color: #94a3b8 !important;
+  font-size: 14px;
+}
+
+.footer-bottom .copyright a,
+.footer-bottom .footer-nav li a {
+  color: #e2e8f0 !important;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom .copyright a:hover,
+.footer-bottom .footer-nav li a:hover {
+  color: var(--color-accent) !important;
+}
+
+.scroll-top {
+  background: linear-gradient(135deg, #e5a93b 0%, #c5861b 100%) !important;
+  color: var(--color-primary) !important;
+  box-shadow: var(--shadow-glow) !important;
+  transition: var(--transition-bounce) !important;
+}
+
+.scroll-top:hover {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  transform: translateY(-5px) scale(1.08) !important;
+  box-shadow: 0 12px 30px rgba(10, 25, 47, 0.4) !important;
+}
+
+
+/* =========================================================================
+   16. COMPREHENSIVE RESPONSIVE DESIGN (320px, 375px, 425px, 768px, 991px)
+   ========================================================================= */
+
+@media only screen and (max-width: 991px) {
+  .header-bottom {
+    padding: 12px 25px !important;
+  }
+  .main-header .menu-area {
+    gap: 0;
+  }
+  .service-section .tab-title li {
+    margin-bottom: 15px;
+  }
+  .service-section .tab-title li .single-btn {
+    height: auto !important;
+    padding: 20px 15px !important;
+  }
+  .main-footer .newsletter-widget {
+    margin-left: 0 !important;
+    margin-top: 25px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sec-pad {
+    padding: 65px 0 75px 0 !important;
+  }
+  .sec-title {
+    font-size: 30px !important;
+    line-height: 40px !important;
+  }
+  .title-text {
+    margin-bottom: 40px !important;
+  }
+  .page-title {
+    padding: 75px 0 65px 0 !important;
+  }
+  .page-title .content-box .title {
+    font-size: 34px !important;
+  }
+  .spa-section {
+    padding: 65px 0 !important;
+  }
+  .gallery-section {
+    padding: 65px 0 75px 0 !important;
+  }
+  .main-footer {
+    padding: 65px 0 45px 0 !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .sec-pad {
+    padding: 55px 0 65px 0 !important;
+  }
+  .sec-title {
+    font-size: 26px !important;
+    line-height: 36px !important;
+  }
+  .title-text {
+    font-size: 14px !important;
+    margin-bottom: 32px !important;
+  }
+  .page-title {
+    padding: 60px 0 50px 0 !important;
+  }
+  .page-title .content-box .title {
+    font-size: 26px !important;
+  }
+  .theme-btn,
+  .theme-btn-two,
+  .theme-btn-three {
+    font-size: 14px !important;
+    padding: 11px 28px !important;
+  }
+  .main-footer .newsletter-widget .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-footer .newsletter-widget .form-group input[type='email'] {
+    width: 100% !important;
+    border-radius: 30px !important;
+    margin-bottom: 10px;
+  }
+  .main-footer .newsletter-widget .form-group button {
+    width: 100% !important;
+    position: relative !important;
+    border-radius: 30px !important;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .sec-title {
+    font-size: 24px !important;
+    line-height: 34px !important;
+  }
+  .header-top {
+    padding: 8px 15px !important;
+  }
+  .header-top .left-content li a {
+    font-size: 11px !important;
+  }
+  .room-section .single-item .lower-content {
+    padding: 22px 16px 26px 16px !important;
+  }
+  .room-section .single-item .lower-content h3 {
+    font-size: 19px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .sec-title {
+    font-size: 22px !important;
+    line-height: 30px !important;
+  }
+  .sec-pad {
+    padding: 45px 0 50px 0 !important;
+  }
+  .theme-btn,
+  .theme-btn-two,
+  .theme-btn-three {
+    font-size: 13px !important;
+    padding: 10px 22px !important;
+  }
+}
+
+/* =========================================================================
+   FOOTER TWEAKS (Spacing & Outlines)
+   ========================================================================= */
+
+.footer-widget ul.list li a,
+.footer-widget ul.list li a:focus,
+.footer-widget ul.list li a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.contact-widget i.fa {
+  margin-right: 10px !important;
+}

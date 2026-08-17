@@ -11,6 +11,7 @@
 <!-- Stylesheets -->
 <link href="css/style.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
+<link href="css/polish.css" rel="stylesheet">
 <link rel="icon" href="img/Gnanalay.png" type="image/x-icon">
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -145,6 +146,7 @@
                             </ul>
                     </div>
                     </nav>
+                    <div class="link"><a href="contact.html" class="theme-btn" style="text-decoration: none;">Book Now</a></div>
                 </div>
             </div>
         </div><!-- sticky-header end -->
@@ -158,8 +160,6 @@
       <source src="img/Flexo Printers video.mp4" type="video/mp4" />
    
     </video>
-
-    <div class="slide-overlay"></div>
 
     <div class="slider-caption">
     
@@ -203,7 +203,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.35);
+      background: transparent; /* Changed from 0.35 opacity so video is not dim */
       z-index: 1;
     }
 
@@ -269,8 +269,6 @@
         <div class="container">
             <div class="content-style-one">
                
-                <br>
-                      <br>
                  <div class="sec-title left">WELCOME TO DEABAM FLEXO PRINTERS</div>
                 <div class="text">
                     <p>Deabam Flexo Printers, established in 1988 and based in Pondicherry, India, is a leading manufacturer of high-quality printed plastic bags and pouches. Specializing in flexographic printing, the company produces a wide range of packaging solutions—including PP, LDPE, and HDPE bags, carry bags, and customized pouches—for various industries. Committed to quality, precision, and timely delivery, Deabam Flexo Printers combines modern printing technology with durable materials to meet the diverse packaging needs of its clients.</p>
@@ -317,12 +315,12 @@
                         </figure>
                         <div class="lower-content">
                           
-                            <h3>Cost-Effective Production</a></h3>
+                            <h3>Cost-Effective Production</h3>
                             <div class="text">Flexographic printing enables fast, cost-effective, and high-quality bulk production on various materials like plastic, paper, and film.</div>
                             <ul class="info-box">
                                 <li class="link"><a href="contact.html" class="theme-btn-three" style="text-decoration: none;">Book Now</a></li>
                         
-                            </ul>
+                            </ul> 
                         </div>
                     </div>
                 </div>
@@ -341,7 +339,7 @@
                         </figure>
                         <div class="lower-content">
                            
-                            <h3>Material Compatibility</a></h3>
+                            <h3>Material Compatibility</h3>
                             <div class="text">Flexographic printing offers versatile ink and material compatibility, producing vibrant, durable prints on various substrates like LDPE, HDPE, PP, and paper.</div>
                             <ul class="info-box">
                                 <li class="link"><a href="contact.html" class="theme-btn-three" style="text-decoration: none;">Book Now</a></li>
@@ -365,7 +363,7 @@
                         </figure>
                         <div class="lower-content">
                           
-                            <h3>Precise Printing</a></h3>
+                            <h3>Precise Printing</h3>
                             <div class="text">
 
 Modern flexographic printing uses eco-friendly inks and precise plate technology to deliver sharp, sustainable, and accurate prints with minimal waste.</div>
@@ -977,8 +975,8 @@ Modern flexographic printing uses eco-friendly inks and precise plate technology
     <!-- main-footer -->
     <footer class="main-footer" style="background-color:rgb(219, 234, 238)"; >
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+            <div class="row justify-content-between">
+                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                     <div class="logo-widget footer-widget">
                         <figure class="footer-logo"><a href="index.html"><img src="img/Gnanalay-logo copy.png" alt="" style="height: 40px;"></a></figure>
                         <div class="text">
@@ -987,9 +985,7 @@ Modern flexographic printing uses eco-friendly inks and precise plate technology
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12 big-column">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
+                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                             <div class="service-widget footer-widget">
                                 <div class="footer-title" style="color: rgb(173, 102, 10);">Services</div>
                                 <ul class="list">
@@ -1000,8 +996,8 @@ Modern flexographic printing uses eco-friendly inks and precise plate technology
                                     <li><a href="#" style="color: rgb(0, 0, 0); text-decoration: none;">SNACKS BAGS</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 footer-widget">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="contact-widget footer-widget">
                                 <div class="footer-title" style="color: rgb(173, 102, 10);">Contact Info</div>
                                 <div class="mail" style="color: rgb(0, 0, 0);"><i class="fa fa-globe"></i> Location<br><br>No.D, 6, 4th Cross St, Pipdic Industrial Estate, Mettupalayam, Marie Oulgaret, Vazhudavur, Puducherry - 605009.<br>
@@ -1015,24 +1011,8 @@ Modern flexographic printing uses eco-friendly inks and precise plate technology
                                 <div class="mail" style="color: rgb(0, 0, 0);"><i class="fa fa-envelope"></i> Email<br>deabamflexoprinters1988@gmail.com<br>
 
   deabamflexo1988@gmail.com</div>
-                               
+                                
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                    <div class="newsletter-widget footer-widget">
-                        <div class="footer-title" style="color: rgb(173, 102, 10);">Newsletter</div>
-                        <div class="text" style="color: rgb(0, 0, 0);">Subscribe us for more updates... </div>
-                        <div class="subscribe-form">
-                            <form action="#" method="post">
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" required="">
-                                    <button type="submit" style="color: rgb(0, 0, 0);">Subscribe</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1045,7 +1025,8 @@ Modern flexographic printing uses eco-friendly inks and precise plate technology
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 column">
-                    <div class="copyright" style="color: white;"><a href="#" style="color:  rgba(236, 210, 188, 0.842);">Getitmedia Solutions Pvt ltd</a> © 2025 All Right Reserved</div>
+                    <div class="copyright" style="color: white;"><a href="#" style="color:  rgba(236, 210, 188, 0.842);">Getitmedia Solutions Pvt ltd</a> © <span id="current-year"></span> All Right Reserved</div>
+                    <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                     <ul class="footer-nav">

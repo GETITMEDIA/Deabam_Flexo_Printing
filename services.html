@@ -11,6 +11,7 @@
 <!-- Stylesheets -->
 <link href="css/style.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
+<link href="css/polish.css" rel="stylesheet">
 <link rel="icon" href="img/Gnanalay.png" type="image/x-icon">
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -145,6 +146,7 @@
                             </ul>
                     </div>
                     </nav>
+                    <div class="link"><a href="contact.html" class="theme-btn" style="text-decoration: none;">Book Now</a></div>
                 </div>
             </div>
         </div><!-- sticky-header end -->
@@ -305,8 +307,8 @@ SHOPPING BAG</a></h3>
     <!-- main-footer -->
     <footer class="main-footer" style="background-color:rgb(219, 234, 238)"; >
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+            <div class="row justify-content-between">
+                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                     <div class="logo-widget footer-widget">
                         <figure class="footer-logo"><a href="index.html"><img src="img/Gnanalay-logo copy.png" alt="" style="height: 40px;"></a></figure>
                         <div class="text">
@@ -315,9 +317,7 @@ SHOPPING BAG</a></h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12 big-column">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
+                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                             <div class="service-widget footer-widget">
                                 <div class="footer-title" style="color: rgb(173, 102, 10);">Services</div>
                                 <ul class="list">
@@ -328,8 +328,8 @@ SHOPPING BAG</a></h3>
                                     <li><a href="#" style="color: rgb(0, 0, 0); text-decoration: none;">SNACKS BAGS</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 footer-widget">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="contact-widget footer-widget">
                                 <div class="footer-title" style="color: rgb(173, 102, 10);">Contact Info</div>
                                 <div class="mail" style="color: rgb(0, 0, 0);"><i class="fa fa-globe"></i> Location<br><br>No.D, 6, 4th Cross St, Pipdic Industrial Estate, Mettupalayam, Marie Oulgaret, Vazhudavur, Puducherry - 605009.<br>
@@ -341,26 +341,9 @@ SHOPPING BAG</a></h3>
 
 9443371441 / 94432 66626</div>
                                 <div class="mail" style="color: rgb(0, 0, 0);"><i class="fa fa-envelope"></i> Email<br>deabamflexoprinters1988@gmail.com<br>
-
   deabamflexo1988@gmail.com</div>
-                               
+                                
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                    <div class="newsletter-widget footer-widget">
-                        <div class="footer-title" style="color: rgb(173, 102, 10);">Newsletter</div>
-                        <div class="text" style="color: rgb(0, 0, 0);">Subscribe us for more updates... </div>
-                        <div class="subscribe-form">
-                            <form action="#" method="post">
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" required="">
-                                    <button type="submit" style="color: rgb(0, 0, 0);">Subscribe</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -373,7 +356,8 @@ SHOPPING BAG</a></h3>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 column">
-                    <div class="copyright" style="color: white;"><a href="#" style="color:  rgba(236, 210, 188, 0.842);">Getitmedia Solutions Pvt ltd</a> © 2025 All Right Reserved</div>
+                    <div class="copyright" style="color: white;"><a href="#" style="color:  rgba(236, 210, 188, 0.842);">Getitmedia Solutions Pvt ltd</a> © <span class="current-year"></span> All Right Reserved</div>
+                    <script>document.querySelectorAll(".current-year").forEach(el => el.textContent = new Date().getFullYear());</script>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                     <ul class="footer-nav">
