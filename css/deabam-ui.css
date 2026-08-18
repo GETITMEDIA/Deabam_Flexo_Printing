@@ -87,6 +87,175 @@ body {
   border: 0;
 }
 
+/* =========================================================================
+   1b. PRELOADER
+   Brand splash shown once per browsing session on the first page load.
+   It only exists when scripting is on (.dx-js) so a no-JS visitor can
+   never be left staring at a screen that will not clear itself.
+   ========================================================================= */
+
+.dx-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: none;
+  background: #060507;
+  opacity: 1;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+.dx-js:not(.dx-splash-seen) .dx-preloader {
+  display: block;
+}
+
+/* Shown only when scripting is on and this session has not seen it yet.
+   The `dx-splash-seen` flag is set by the inline <head> script, before
+   first paint, so returning pages never flash the splash. */
+
+.dx-preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* A hairline frame inset from all four viewport edges. The lit line is an
+   SVG rounded-rect stroke drawn with stroke-dashoffset, so it travels the
+   whole perimeter at a constant speed and keeps the corners perfectly
+   rounded. The page is only revealed once that square has closed —
+   js/site.js waits for the draw to finish. */
+.dx-preloader__stage {
+  position: absolute;
+  inset: 10px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+}
+
+.dx-preloader__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.dx-preloader__track {
+  fill: none;
+  stroke: rgba(255, 255, 255, .08);
+  stroke-width: 1;
+}
+
+.dx-preloader__line {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, .45));
+  /* Start fully retracted before JS measures the real perimeter, otherwise
+     the finished square flashes on screen for a frame and then rewinds.
+     Any value larger than the perimeter hides it completely. */
+  stroke-dasharray: 9999;
+  stroke-dashoffset: 9999;
+}
+
+/* Centred lock-up: mark and wordmark side by side. */
+.dx-preloader__brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.4vw, 16px);
+  padding: 0 20px;
+  max-width: 100%;
+}
+
+.dx-preloader__mark {
+  width: clamp(30px, 6.5vw, 42px);
+  height: auto;
+  flex: 0 0 auto;
+  display: block;
+  animation: dx-pl-breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes dx-pl-breathe {
+  0%, 100% { opacity: .82; }
+  50%      { opacity: 1; }
+}
+
+.dx-preloader__name {
+  font-family: var(--font-heading, inherit);
+  font-size: clamp(1.15rem, .82rem + 1.7vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: #f5f4f7;
+  line-height: 1.15;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.dx-preloader__name span {
+  color: #6f6b78;
+  font-weight: 600;
+}
+
+/* Phones keep the same single-line lock-up, just smaller. */
+@media (max-width: 480px) {
+  .dx-preloader__stage {
+    inset: 8px;
+    border-radius: 13px;
+  }
+
+  .dx-preloader__stage::after {
+    border-radius: 12px;
+  }
+
+  .dx-preloader__brand {
+    gap: 9px;
+    padding: 0 12px;
+  }
+
+  .dx-preloader__mark {
+    width: 26px;
+  }
+
+  .dx-preloader__name {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .dx-preloader__name {
+    font-size: .92rem;
+  }
+
+  .dx-preloader__mark {
+    width: 22px;
+  }
+}
+
+/* Reduced motion: keep the splash and the lit frame, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+
+  .dx-preloader__mark {
+    animation: none;
+  }
+
+  /* show the completed square straight away instead of drawing it */
+  .dx-preloader__line {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}
+
+/* Scroll is locked only while the splash is up. */
+body.dx-preloading {
+  overflow: hidden;
+}
+
 /* Skip link — keyboard accessibility */
 .dx-skip {
   position: absolute;

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <script>document.documentElement.className += " dx-js";</script>
+  <script>(function(d){var c=" dx-js";try{if(sessionStorage.getItem("dxSeenSplash")==="1")c+=" dx-splash-seen"}catch(e){}d.className+=c})(document.documentElement);</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <title>About Us | Deabam Flexo Printers, Pondicherry</title>
@@ -41,6 +41,20 @@
 </head>
 
 <body>
+  <!-- Brand splash: first page of a session only -->
+  <div class="dx-preloader" role="status" aria-live="polite" aria-label="Loading Deabam Flexo Printers">
+    <div class="dx-preloader__stage">
+      <svg class="dx-preloader__ring" aria-hidden="true" focusable="false">
+        <rect class="dx-preloader__track" x="0.75" y="0.75" rx="15" ry="15"></rect>
+        <rect class="dx-preloader__line" x="0.75" y="0.75" rx="15" ry="15"></rect>
+      </svg>
+      <div class="dx-preloader__brand">
+        <img class="dx-preloader__mark" src="img/opt/mark.webp" alt="" width="104" height="104">
+        <p class="dx-preloader__name">Deabam <span>Flexo Printers</span></p>
+      </div>
+    </div>
+  </div>
+
   <a class="dx-skip" href="#main">Skip to content</a>
   <div class="dx-progress" aria-hidden="true"></div>
 

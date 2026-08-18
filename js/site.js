@@ -492,8 +492,109 @@
     });
   }
 
+  /* ---------------------------------------------------------------------
+     11. Preloader
+     A brand splash on the first page of a session only — moving between
+     pages afterwards goes straight to the content.
+
+     The lit line is drawn once all the way around the frame, and the page
+     is not revealed until that square has closed. A hard timeout still
+     guarantees the splash can never trap the visitor if something stalls.
+     --------------------------------------------------------------------- */
+  var PRELOAD_KEY = 'dxSeenSplash';
+  var DRAW_MS = 2000;      // time for the line to travel the full perimeter
+  var MAX_VISIBLE = 6000;  // never hold the page hostage
+
+  function seenSplash() {
+    try { return sessionStorage.getItem(PRELOAD_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  function markSplashSeen() {
+    try { sessionStorage.setItem(PRELOAD_KEY, '1'); } catch (e) { /* private mode */ }
+  }
+
+  /* Fit the SVG rounded-rect to the frame and return its perimeter. */
+  function sizeSplashRing(pl) {
+    var stage = $('.dx-preloader__stage', pl);
+    var svg = $('.dx-preloader__ring', pl);
+    if (!stage || !svg) return null;
+
+    var box = stage.getBoundingClientRect();
+    var w = Math.max(1, Math.round(box.width));
+    var h = Math.max(1, Math.round(box.height));
+    var inset = 0.75;                       // half the stroke width
+    var rw = w - inset * 2;
+    var rh = h - inset * 2;
+    var r = Math.min(15, rw / 2, rh / 2);
+
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    $$('rect', svg).forEach(function (rect) {
+      rect.setAttribute('width', rw);
+      rect.setAttribute('height', rh);
+      rect.setAttribute('rx', r);
+      rect.setAttribute('ry', r);
+    });
+
+    // perimeter of a rounded rectangle
+    return 2 * (rw + rh) - 8 * r + 2 * Math.PI * r;
+  }
+
+  function initPreloader() {
+    var pl = $('.dx-preloader');
+    if (!pl) return;
+
+    // Already shown this session — it is hidden by CSS, just drop it.
+    if (document.documentElement.classList.contains('dx-splash-seen') || seenSplash()) {
+      pl.parentNode && pl.parentNode.removeChild(pl);
+      return;
+    }
+
+    document.body.classList.add('dx-preloading');
+    var start = Date.now();
+    var finished = false;
+    var drawMs = reduceMotion ? 400 : DRAW_MS;
+
+    var line = $('.dx-preloader__line', pl);
+    var perimeter = sizeSplashRing(pl);
+
+    if (line && perimeter && !reduceMotion) {
+      line.style.strokeDasharray = perimeter;
+      line.style.strokeDashoffset = perimeter;
+      // next frame, release it so the transition actually runs
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          line.style.transition = 'stroke-dashoffset ' + drawMs + 'ms cubic-bezier(.45,.05,.25,1)';
+          line.style.strokeDashoffset = '0';
+        });
+      });
+    }
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      markSplashSeen();
+      pl.classList.add('is-done');
+      document.body.classList.remove('dx-preloading');
+      setTimeout(function () {
+        if (pl.parentNode) pl.parentNode.removeChild(pl);
+      }, 650);
+    }
+
+    // Leave only once the square has closed *and* the page has loaded.
+    function finishWhenReady() {
+      var waited = Date.now() - start;
+      setTimeout(finish, Math.max(0, drawMs + 160 - waited));
+    }
+
+    if (document.readyState === 'complete') finishWhenReady();
+    else window.addEventListener('load', finishWhenReady, { once: true });
+
+    setTimeout(finish, MAX_VISIBLE);
+  }
+
   /* --------------------------------------------------------------------- */
   function boot() {
+    initPreloader();
     initScrollUI();
     initDrawer();
     initReveal();
