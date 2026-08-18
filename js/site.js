@@ -123,7 +123,7 @@
         setTimeout(function () { el.classList.add('is-in'); }, delay);
         io.unobserve(el);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
     items.forEach(function (el) { io.observe(el); });
   }

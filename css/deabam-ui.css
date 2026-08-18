@@ -770,7 +770,7 @@ body.dx-preloading {
 }
 
 .dx-banner--portfolio {
-  background-image: url(../img/hero/porfolioo_hero.webp);
+  background-image: url(../img/hero/portfolio_hero.webp);
 }
 
 .dx-banner--contact {
@@ -791,7 +791,7 @@ body.dx-preloading {
   }
 
   .dx-banner--portfolio {
-    background-image: url(../img/hero/porfolioo_hero-sm.webp);
+    background-image: url(../img/hero/portfolio_hero-sm.webp);
   }
 
   .dx-banner--contact {
@@ -2899,26 +2899,25 @@ body.dx-locked {
   }
 
   .dx-footer {
-    text-align: center;
+    text-align: left;
   }
 
   .dx-footer__grid {
     grid-template-columns: 1fr;
     gap: var(--dx-s4);
-    text-align: center;
   }
 
   .dx-footer__links {
-    justify-items: center;
+    justify-items: start;
   }
 
   .dx-footer__contact div {
-    justify-content: center;
+    justify-content: flex-start;
     text-align: left;
   }
 
   .dx-foot-social {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .dx-footer__bottom {
