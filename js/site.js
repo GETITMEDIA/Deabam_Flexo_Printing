@@ -299,9 +299,11 @@
 
   /* ---------------------------------------------------------------------
      6. Enquiry / contact forms
-     There is no server-side mail handler in this static build, so the form
-     validates locally and then hands the enquiry to WhatsApp or the mail
-     client — both reach the office immediately.
+     There is no server-side handler in this static build, so "Send Enquiry"
+     validates the form locally, builds a formatted message from whatever
+     the visitor filled in, and hands it straight to WhatsApp — on mobile
+     this opens the WhatsApp app, on desktop it opens WhatsApp Web, both
+     pre-filled and ready to send to the business number.
      --------------------------------------------------------------------- */
   function initForms() {
     $$('form[data-enquiry]').forEach(function (form) {
@@ -362,21 +364,22 @@
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+
         if (!validate()) {
           var bad = $('.dx-field.is-invalid input, .dx-field.is-invalid select, .dx-field.is-invalid textarea', form);
           if (bad) bad.focus();
           return;
         }
 
-        var body = compose();
-        var channel = form.getAttribute('data-enquiry');
+        var waUrl = 'https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(compose());
+        var opened = window.open(waUrl, '_blank', 'noopener');
 
-        if (channel === 'whatsapp') {
-          window.open('https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(body), '_blank', 'noopener');
-        } else {
-          window.location.href = 'mailto:' + BIZ.email +
-            '?subject=' + encodeURIComponent('Website enquiry — Deabam Flexo Printers') +
-            '&body=' + encodeURIComponent(body);
+        // Desktop: wa.me opens WhatsApp Web / the desktop app in a new tab.
+        // Mobile: wa.me hands off to the WhatsApp app directly. If a
+        // pop-up blocker stops window.open(), fall back to navigating the
+        // current tab so the enquiry still reaches WhatsApp.
+        if (!opened) {
+          window.location.href = waUrl;
         }
 
         if (alertBox) {
@@ -385,15 +388,6 @@
         }
         form.reset();
       });
-
-      // Secondary "send on WhatsApp" button inside the same form
-      var waBtn = $('[data-send-whatsapp]', form);
-      if (waBtn) {
-        waBtn.addEventListener('click', function () {
-          if (!validate()) return;
-          window.open('https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(compose()), '_blank', 'noopener');
-        });
-      }
     });
   }
 
