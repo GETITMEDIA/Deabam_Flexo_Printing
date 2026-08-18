@@ -58,8 +58,20 @@ img {
   max-width: 100%;
 }
 
+/* Horizontal overflow containment.
+   `clip` is used in preference to `hidden` because it contains overflow
+   WITHOUT creating a scroll container — which keeps `position: sticky`
+   working on the header. Older engines fall back to `hidden` on body. */
+html,
 body {
   overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 /* Visually hidden but available to screen readers */
@@ -368,6 +380,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 32px;
   color: #b9c9dd;
   text-decoration: none !important;
   transition: color var(--dx-t);
@@ -388,8 +401,8 @@ body {
 }
 
 .dx-topbar__social a {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -426,18 +439,26 @@ body {
   gap: 24px;
   min-height: 78px;
   padding-block: 10px;
+  /* the three children must be allowed to shrink or the bar overflows */
+  min-width: 0;
+  flex-wrap: nowrap;
 }
 
 .dx-logo {
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 44px;
 }
 
 /* The wordmark is a very wide 6.8:1 logo, so height drives its footprint. */
 .dx-logo img {
   height: 48px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
   display: block;
   transition: transform var(--dx-t), height var(--dx-t);
 }
@@ -555,9 +576,58 @@ body {
   min-height: 380px;
   display: flex;
   align-items: center;
+  background-color: var(--dx-navy);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
+}
+
+/* Per-page banner artwork.
+   These live in the stylesheet rather than an inline style because a url()
+   inside a CSS custom property resolves against the stylesheet's location,
+   which silently breaks the path. Declared here, `../img/...` is correct.
+   Phones and small tablets load the -sm variant (~25 KB instead of ~90 KB). */
+.dx-banner--about {
+  background-image: url(../img/hero/about_hero.webp);
+}
+
+.dx-banner--services {
+  background-image: url(../img/hero/services_hero.webp);
+}
+
+.dx-banner--wastage {
+  background-image: url(../img/hero/wastage_bag_hero.webp);
+}
+
+.dx-banner--portfolio {
+  background-image: url(../img/hero/porfolioo_hero.webp);
+}
+
+.dx-banner--contact {
+  background-image: url(../img/hero/contact_hero.webp);
+}
+
+@media (max-width: 900px) {
+  .dx-banner--about {
+    background-image: url(../img/hero/about_hero-sm.webp);
+  }
+
+  .dx-banner--services {
+    background-image: url(../img/hero/services_hero-sm.webp);
+  }
+
+  .dx-banner--wastage {
+    background-image: url(../img/hero/wastage_bag_hero-sm.webp);
+  }
+
+  .dx-banner--portfolio {
+    background-image: url(../img/hero/porfolioo_hero-sm.webp);
+  }
+
+  .dx-banner--contact {
+    background-image: url(../img/hero/contact_hero-sm.webp);
+  }
 }
 
 .dx-banner::before {
@@ -602,6 +672,9 @@ body {
 }
 
 .dx-crumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
   color: #dbe6f3;
   text-decoration: none;
 }
@@ -748,7 +821,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
+  /* padding rather than pure inline text, so the tap area clears 44px */
+  padding: 10px 0;
+  min-height: 44px;
   font-size: .9rem;
   font-weight: 700;
   color: var(--dx-gold-dark);
@@ -1002,7 +1078,9 @@ body {
 
 .dx-badge-float {
   position: absolute;
-  right: -8px;
+  /* sits inside the media edge — a negative offset would push it past the
+     viewport once the page shell reaches the screen edge */
+  right: 0;
   bottom: 24px;
   z-index: 3;
   background: linear-gradient(140deg, #eab54a, #c5861b);
@@ -1483,7 +1561,13 @@ body {
   color: var(--dx-ink);
   text-decoration: none !important;
   margin: 0 0 3px;
-  word-break: break-word;
+  /* long emails/addresses must wrap, never widen the card */
+  overflow-wrap: anywhere;
+}
+
+.dx-ccard a {
+  padding: 5px 0;
+  min-height: 32px;
 }
 
 .dx-ccard a:hover {
@@ -1992,12 +2076,23 @@ body.dx-locked {
   will-change: opacity, transform;
 }
 
+/* Directional reveals shift the element sideways before it animates in.
+   That displacement is clipped by the html/body overflow rule above, so
+   it can never create a horizontal scrollbar. Below 992px the columns are
+   already full-width, so the sideways motion is dropped entirely there. */
 .dx-js [data-reveal="left"] {
-  transform: translateX(-30px);
+  transform: translateX(-24px);
 }
 
 .dx-js [data-reveal="right"] {
-  transform: translateX(30px);
+  transform: translateX(24px);
+}
+
+@media (max-width: 991px) {
+  .dx-js [data-reveal="left"],
+  .dx-js [data-reveal="right"] {
+    transform: translateY(26px);
+  }
 }
 
 .dx-js [data-reveal="zoom"] {
@@ -2071,13 +2166,15 @@ body.dx-locked {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: 4px;
 }
 
 .dx-footer__links a {
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  padding: 6px 0;
+  min-height: 34px;
   font-size: .92rem;
   color: #b9c8dc;
   text-decoration: none !important;
@@ -2106,7 +2203,9 @@ body.dx-locked {
   gap: 13px;
   align-items: flex-start;
   font-size: .92rem;
-  line-height: 1.65;
+  /* generous leading so the padded tel:/mailto: links below reach a
+     comfortable tap height without their hit areas colliding */
+  line-height: 2;
 }
 
 .dx-footer__contact i {
@@ -2116,10 +2215,13 @@ body.dx-locked {
 }
 
 .dx-footer__contact a {
+  display: inline-block;
+  padding: 5px 0;
   color: #b9c8dc;
   text-decoration: none !important;
   transition: color var(--dx-t);
-  word-break: break-word;
+  /* long email addresses must wrap inside the column, not stretch it */
+  overflow-wrap: anywhere;
 }
 
 .dx-footer__contact a:hover {
@@ -2166,6 +2268,9 @@ body.dx-locked {
 }
 
 .dx-footer__bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
   color: #b9c8dc;
   text-decoration: none !important;
   transition: color var(--dx-t);
@@ -2257,6 +2362,8 @@ body.dx-locked {
 }
 
 /* Spec table */
+/* The table is wider than a phone, so it scrolls inside its own box rather
+   than widening the page. A right-edge fade signals there is more to see. */
 .dx-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--dx-line);
@@ -2264,6 +2371,25 @@ body.dx-locked {
   box-shadow: var(--dx-e1);
   background: #fff;
   -webkit-overflow-scrolling: touch;
+  background-image: linear-gradient(90deg, transparent calc(100% - 44px), rgba(15, 23, 42, .07) 100%);
+  background-repeat: no-repeat;
+  background-attachment: local, scroll;
+  overscroll-behavior-x: contain;
+}
+
+.dx-table-hint {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 0;
+  font-size: .82rem;
+  color: var(--dx-muted);
+}
+
+@media (max-width: 700px) {
+  .dx-table-hint {
+    display: flex;
+  }
 }
 
 .dx-table {
@@ -2346,6 +2472,39 @@ body.dx-locked {
 
   .dx-gal {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* 992–1200px: the wide wordmark, six nav items and the quote button
+     will not fit at full size. Compact all three rather than letting the
+     bar push past the viewport — the CTA stays visible, just smaller. */
+  .dx-header__in {
+    gap: 12px;
+  }
+
+  .dx-logo img,
+  .dx-header.is-stuck .dx-logo img {
+    height: 38px;
+  }
+
+  .dx-nav {
+    gap: 0;
+  }
+
+  .dx-nav a {
+    padding: 12px 8px;
+    font-size: .85rem;
+  }
+
+  .dx-nav a::after {
+    left: 8px;
+    right: 8px;
+  }
+
+  .dx-header__cta .dx-btn {
+    padding: 10px 16px;
+    font-size: .82rem;
+    min-height: 42px;
+    gap: 7px;
   }
 }
 
