@@ -403,19 +403,6 @@
     var video = $('.dx-hero__media video');
     if (!video) return;
 
-    var conn = navigator.connection || {};
-    var heavyOk = window.innerWidth >= 992 &&
-      !reduceMotion &&
-      !conn.saveData &&
-      !/2g/.test(conn.effectiveType || '');
-
-    if (!heavyOk) return;
-
-    var src = video.getAttribute('data-src');
-    if (!src) return;
-    video.src = src;
-    video.load();
-
     video.addEventListener('playing', function () {
       video.classList.add('is-playing');
     });
