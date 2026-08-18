@@ -392,15 +392,17 @@
   }
 
   /* ---------------------------------------------------------------------
-     7. Home hero video — pause when offscreen, sound toggle
+     7. Home hero video — pause when offscreen
+     The hero is video-only (no text, no dark overlay). The showreel is a
+     large file, so it is only loaded on wide screens, when the user has
+     not asked for reduced motion and is not on a metered/slow connection
+     — everyone else keeps the poster image, which already shows the
+     press in action.
      --------------------------------------------------------------------- */
   function initHeroVideo() {
     var video = $('.dx-hero__media video');
     if (!video) return;
 
-    // The showreel is a large file. Only load it on wide screens, when the
-    // user has not asked for reduced motion and is not on a metered/slow
-    // connection — everyone else keeps the poster image.
     var conn = navigator.connection || {};
     var heavyOk = window.innerWidth >= 992 &&
       !reduceMotion &&
@@ -416,8 +418,6 @@
 
     video.addEventListener('playing', function () {
       video.classList.add('is-playing');
-      var toggle = $('.dx-hero__sound');
-      if (toggle) toggle.hidden = false;
     });
 
     video.play().catch(function () { /* autoplay blocked — poster stays */ });
@@ -433,15 +433,6 @@
         });
       }, { threshold: 0.15 });
       io.observe(video);
-    }
-
-    var toggle = $('.dx-hero__sound');
-    if (toggle) {
-      toggle.addEventListener('click', function () {
-        video.muted = !video.muted;
-        toggle.innerHTML = '<i class="fa ' + (video.muted ? 'fa-volume-off' : 'fa-volume-up') + '"></i>';
-        toggle.setAttribute('aria-label', video.muted ? 'Unmute showreel' : 'Mute showreel');
-      });
     }
   }
 
