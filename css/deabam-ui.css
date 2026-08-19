@@ -2730,7 +2730,28 @@ body.dx-locked {
   }
 
   .dx-topbar {
-    display: none;
+    display: block; /* Show topbar on mobile/tab */
+    text-align: center;
+  }
+  
+  .dx-topbar__in {
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding-block: 10px;
+  }
+
+  .dx-topbar__info {
+    justify-content: center;
+  }
+
+  .dx-topbar__info a {
+    display: block;
+    text-align: center;
+  }
+  
+  .dx-topbar__info a i {
+    margin-right: 6px;
   }
 
   .dx-header__in {
